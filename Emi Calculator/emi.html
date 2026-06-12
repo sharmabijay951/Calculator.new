@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Online EMI Calculator | Home & Car Loan Monthly Installment Tool</title>
+    <meta name="description" content="Plan your loans with our smart EMI calculator. Get accurate monthly installment details for home, car, and personal loans.">
+    <meta name="keywords" content="EMI Calculator, Loan Calculator, Monthly Installment, Home Loan EMI, Car Loan Calculator India">
+    <link rel="stylesheet" href="../styles.css"> </head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                  <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li class="active"><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>EMI Calculator</h1>
+            </header>
+
+            <section class="calculator-card">
+                <div class="main-layout">
+                    <div class="input-section">
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Loan Amount</label>
+                                <span class="value-box">₹ <input type="number" id="loan-input" value="1000000"></span>
+                            </div>
+                            <input type="range" id="loan-slider" min="100000" max="10000000" step="10000" value="1000000">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Interest Rate (p.a)</label>
+                                <span class="value-box"><input type="number" id="rate-input" value="8.5" step="0.1">%</span>
+                            </div>
+                            <input type="range" id="rate-slider" min="1" max="20" step="0.1" value="8.5">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Loan Tenure</label>
+                                <span class="value-box"><input type="number" id="year-input" value="10">Yr</span>
+                            </div>
+                            <input type="range" id="year-slider" min="1" max="30" value="10">
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <div class="res-row">
+                            <span>Principal Amount</span>
+                            <h3 id="res-principal">₹0</h3>
+                        </div>
+                        <div class="res-row">
+                            <span>Total Interest</span>
+                            <h3 id="res-interest" style="color: #eb5b3c;">₹0</h3>
+                        </div>
+                        <hr>
+                        <div class="res-row total">
+                            <span>Monthly EMI</span>
+                            <h2 id="res-emi">₹0</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="emi.js"></script>
+    <script>
+        // PERFECT MOBILE MENU LOGIC
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('open-menu');
+
+        if (menuBtn && sidebar) {
+            menuBtn.onclick = function(e) {
+                e.stopPropagation(); // Ye menu ko turant band hone se rokega
+                sidebar.classList.toggle('active');
+            };
+
+            document.addEventListener('click', function(e) {
+                // Agar click sidebar ke bahar hua hai aur menu button par nahi hua hai, tabhi band karo
+                if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuBtn) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Volume Calculator | Calculate Sphere, Cone, Cube & Pyramid Volume</title>
+    <meta name="description" content="Find the volume of 3D shapes. Supports Sphere, Cylinder, Cube, Cuboid, Cone, and Square Pyramids with accurate formulas.">
+    <meta name="keywords" content="Volume Calculator, 3D Geometry Tool, Sphere Volume, Cone Volume, Pyramid Volume Calculator">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .shape-input-container { margin-top: 20px; display: none; }
+        .active-shape { display: block; }
+        select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ebedef; font-size: 1rem; margin-bottom: 20px; outline: none; }
+        .formula-text { font-size: 0.9rem; color: #7c7e8c; margin-bottom: 15px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li class="active"><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>Volume Calculator</h1>
+            </header>
+
+            <section class="calculator-card">
+                <div class="main-layout">
+                    <div class="input-section">
+                        <label>Select 3D Shape</label>
+                        <select id="shape-selector">
+                            <option value="sphere">Sphere</option>
+                            <option value="cube">Cube</option>
+                            <option value="cuboid">Cuboid</option>
+                            <option value="pyramid">Square Pyramid</option>
+                            <option value="prism">Polygon Prism</option>
+                            <option value="cone">Cone</option>
+                            <option value="ellipsoid">Ellipsoid (Ellipse)</option>
+                        </select>
+
+                        <!-- Sphere Inputs -->
+                        <div id="inputs-sphere" class="shape-input-container active-shape">
+                            <p class="formula-text">Formula: 4/3 × π × r³</p>
+                            <div class="input-card"><div class="card-header"><label>Radius (r)</label><span class="value-box"><input type="number" id="sphere-r" value="5"></span></div></div>
+                        </div>
+
+                        <!-- Cube Inputs -->
+                        <div id="inputs-cube" class="shape-input-container">
+                            <p class="formula-text">Formula: a³</p>
+                            <div class="input-card"><div class="card-header"><label>Side (a)</label><span class="value-box"><input type="number" id="cube-a" value="10"></span></div></div>
+                        </div>
+
+                        <!-- Cuboid Inputs -->
+                        <div id="inputs-cuboid" class="shape-input-container">
+                            <p class="formula-text">Formula: a × b × c</p>
+                            <div class="input-card"><div class="card-header"><label>Length (a)</label><span class="value-box"><input type="number" id="cuboid-a" value="10"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Width (b)</label><span class="value-box"><input type="number" id="cuboid-b" value="5"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Height (c)</label><span class="value-box"><input type="number" id="cuboid-c" value="3"></span></div></div>
+                        </div>
+
+                        <!-- Pyramid Inputs -->
+                        <div id="inputs-pyramid" class="shape-input-container">
+                            <p class="formula-text">Formula: a² × (h/3)</p>
+                            <div class="input-card"><div class="card-header"><label>Base Edge (a)</label><span class="value-box"><input type="number" id="pyra-a" value="6"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Height (h)</label><span class="value-box"><input type="number" id="pyra-h" value="10"></span></div></div>
+                        </div>
+
+                        <!-- Prism Inputs -->
+                        <div id="inputs-prism" class="shape-input-container">
+                            <p class="formula-text">Formula: Base Area × Height</p>
+                            <div class="input-card"><div class="card-header"><label>Sides (n)</label><span class="value-box"><input type="number" id="prism-n" value="6"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Side Length (s)</label><span class="value-box"><input type="number" id="prism-s" value="10"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Prism Height (h)</label><span class="value-box"><input type="number" id="prism-h" value="20"></span></div></div>
+                        </div>
+
+                        <!-- Cone Inputs -->
+                        <div id="inputs-cone" class="shape-input-container">
+                            <p class="formula-text">Formula: 1/3 × π × r² × h</p>
+                            <div class="input-card"><div class="card-header"><label>Radius (r)</label><span class="value-box"><input type="number" id="cone-r" value="7"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Height (h)</label><span class="value-box"><input type="number" id="cone-h" value="12"></span></div></div>
+                        </div>
+
+                        <!-- Ellipsoid Inputs -->
+                        <div id="inputs-ellipsoid" class="shape-input-container">
+                            <p class="formula-text">Formula: 4/3 × π × a × b × c</p>
+                            <div class="input-card"><div class="card-header"><label>Axis X (a)</label><span class="value-box"><input type="number" id="ell-a" value="3"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Axis Y (b)</label><span class="value-box"><input type="number" id="ell-b" value="4"></span></div></div>
+                            <div class="input-card"><div class="card-header"><label>Axis Z (c)</label><span class="value-box"><input type="number" id="ell-c" value="5"></span></div></div>
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <div class="res-row">
+                            <span>Total Volume</span>
+                            <h2 id="final-volume">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="volume.js"></script>
+</body>
+</html>

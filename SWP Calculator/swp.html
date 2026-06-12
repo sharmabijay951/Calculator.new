@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWP Calculator | Systematic Withdrawal Plan Return Estimator</title>
+    <meta name="description" content="Plan your regular income with our SWP calculator. Estimate total withdrawals and the final balance of your investment.">
+    <meta name="keywords" content="SWP Calculator, Systematic Withdrawal Plan, Retirement Income, Investment Withdrawal Tool">
+    <link rel="canonical" href="https://yourdomain.com/SWP-Calculator/swp.html">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li class="active"><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>SWP Calculator</h1>
+            </header>
+
+            <section class="calculator-card">
+                <div class="main-layout">
+                    <div class="input-section">
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Total Investment</label>
+                                <span class="value-box">₹ <input type="number" id="total-inv-input" value="500000"></span>
+                            </div>
+                            <input type="range" id="total-inv-slider" min="10000" max="10000000" step="10000" value="500000">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Monthly Withdrawal</label>
+                                <span class="value-box">₹ <input type="number" id="withdraw-input" value="10000"></span>
+                            </div>
+                            <input type="range" id="withdraw-slider" min="500" max="100000" step="500" value="10000">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Expected Return Rate (p.a)</label>
+                                <span class="value-box"><input type="number" id="rate-input" value="8" step="0.1">%</span>
+                            </div>
+                            <input type="range" id="rate-slider" min="1" max="30" step="0.1" value="8">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Time Period (Years)</label>
+                                <span class="value-box"><input type="number" id="year-input" value="5">Yr</span>
+                            </div>
+                            <input type="range" id="year-slider" min="1" max="40" value="5">
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <div class="res-row">
+                            <span>Total Withdrawal</span>
+                            <h3 id="res-total-withdrawal">₹0</h3>
+                        </div>
+                        <div class="res-row">
+                            <span>Final Balance</span>
+                            <h3 id="res-final-balance" style="color: #00d09c;">₹0</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="swp.js"></script>
+</body>
+</html>

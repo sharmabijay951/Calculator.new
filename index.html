@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CalcPro Smart Suite | All-In-One Online Calculator Dashboard</title>
+    <meta name="description" content="Access 18+ smart calculators for Finance, Math, Geometry, and Health. The most accurate and fastest calculator suite">
+    <meta name="keywords" content="CalcPro, Online Calculator, SIP Calculator, EMI Calculator, Math Tools.">
+    <!-- Google Font for Global Consistency -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="127.0.0.1:5500/index.html">
+    <style>
+        :root {
+            --primary: #00d09c;
+            --bg: #f4f7f9;
+            --sidebar-bg: #ffffff;
+            --text-dark: #2d2e32;
+            --text-muted: #7c7e8c;
+            --border: #ebedef;
+            --hover-bg: #e8fcf6;
+        }
+
+        /* Anti-aliasing for smooth bold characters */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body { display: flex; height: 100vh; background: var(--bg); overflow: hidden; }
+
+        /* --- 1. UNIVERSAL SIDEBAR (Exact Match to your Calculators) --- */
+        .sidebar { 
+            width: 280px; 
+            background: var(--sidebar-bg); 
+            border-right: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        /* Sidebar Header & Logo matching your screenshot[cite: 2, 4] */
+        .sidebar-header { 
+            padding: 30px 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        .logo-box { 
+            background: var(--primary); 
+            color: white; 
+            padding: 10px 15px; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            font-size: 1.5rem; 
+        }
+        .logo-text h3 { font-size: 1.2rem; color: var(--text-dark); font-weight: 700; margin-bottom: -2px; }
+        .logo-text p { font-size: 0.75rem; color: var(--text-muted); }
+
+        .sidebar ul { list-style: none; padding: 20px 10px; }
+        
+        /* Bolder, Smoother Sidebar Links[cite: 3] */
+        .sidebar li { margin-bottom: 5px; border-radius: 12px; transition: 0.2s; }
+        
+        .sidebar a { 
+            text-decoration: none; 
+            color: #7c7e8c; 
+            display: block; 
+            padding: 12px 15px; 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar li.active { background: #e8fcf6; }
+        .sidebar li.active a { color: var(--primary); font-weight: 600; }
+        
+        .sidebar li:hover:not(.active) { background: #f8f9fa; }
+        .sidebar li:hover a { color: var(--primary); padding-left: 20px; }
+
+        /* --- 2. MAIN DASHBOARD CONTENT[cite: 3] --- */
+        .main-content { flex: 1; overflow-y: auto; padding: 40px; display: flex; flex-direction: column; }
+        
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; width: 100%; }
+        .top-bar h2 { font-size: 1.8rem; color: #2d2e32; font-weight: 600; }
+        .badge { background: white; padding: 8px 20px; border-radius: 30px; font-weight: bold; border: 1px solid var(--border); color: var(--primary); font-size: 0.9rem; }
+
+        /* --- 3. DASHBOARD GRID (16 Calculators) --- */
+        .dashboard-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); 
+            gap: 25px; 
+            width: 100%;
+        }
+
+        .calc-card { 
+            background: white; 
+            border-radius: 24px; 
+            padding: 30px 20px; 
+            text-align: center; 
+            text-decoration: none; 
+            border: 1px solid var(--border); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 15px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .calc-card:hover { transform: translateY(-12px); box-shadow: 0 15px 35px rgba(0,208,156,0.12); border-color: var(--primary); }
+        .icon-box { width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; background: #f0fffb; border-radius: 16px; }
+        .icon-box svg { width: 30px; height: 30px; fill: var(--primary); }
+        
+        .calc-card h4 { color: var(--text-dark); font-size: 1rem; font-weight: 600; }
+        .calc-card .tag { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
+
+        /* Custom scrollbar for professional look[cite: 3] */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 10px; }
+
+        @media (max-width: 900px) { .sidebar { display: none; } }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-box">C</div>
+            <div class="logo-text"><h3>CalcPro</h3><p>Smart Suite</p></div>
+        </div>
+        <ul id="sidebar-list">
+            <!-- Sidebar links aligned by Script -->
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h2>Welcome Home, Vaibhav</h2>
+            <div class="badge">17 Calculators</div>
+        </div>
+        <div class="dashboard-grid" id="main-grid">
+            <!-- Grid cards aligned by Script -->
+        </div>
+    </main>
+
+    <script>
+        // Exact order as per your request and VS Code Screenshot[cite: 4]
+        const calcs = [
+            { name: "Dashboard", path: "index.html", cat: "Home", icon: "M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" },
+            { name: "Standard", path: "Standard Calculator/standard.html", cat: "Basic", icon: "M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M11,7H13V9H11V7M11,11H13V13H11V11M11,15H13V17H11V15M7,7H9V9H7V7M7,11H9V13H7V11M7,15H9V17H7V15M15,7H17V17H15V7Z" },
+            { name: "SIP Calculator", path: "Sip Calculator/sip.html", cat: "Investment", icon: "M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z" },
+            { name: "EMI Calculator", path: "Emi Calculator/emi.html", cat: "Finance", icon: "M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.1,7 14,7.9 14,9C14,10.1 13.1,11 12,11C10.9,11 10,10.1 10,9C10,7.9 10.9,7 12,7M16,17H8V15.5L10,13.5V12.11C9.4,11.82 9,11.21 9,10.5C9,9.5 9.83,8.75 10.83,8.75C11.83,8.75 12.66,9.5 12.66,10.5C12.66,11.21 12.26,11.82 11.66,12.11V13.5L13.66,15.5V17Z" },
+            { name: "Lumpsum Calculator", path: "Lumpsum Calculator/lumpsum.html", cat: "Investment", icon: "M21,18H24V20H21V23H19V20H16V18H19V15H21V18M19,8V10H3V8H19M19,12V14H3V12H19M3,4H19V6H3V4M3,16H13V18H3V16Z" },
+            { name: "Inflation Calculator", path: "Inflation Calculator/inflation.html", cat: "Finance", icon: "M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M11,13H13V17H11V13M11,7H13V11H11V7Z" },
+            { name: "Compounding Calculator", path: "Compounding Calculator/compounding.html", cat: "Investment", icon: "M12,4V1L8,5L12,9V6A8,8 0 0,1 20,14A8,8 0 0,1 12,22A8,8 0 0,1 4,14H2A10,10 0 0,0 12,24A10,10 0 0,0 22,14A10,10 0 0,0 12,4Z" },
+            { name: "Simple Interest Calculator", path: "Simple Interest Calculator/si.html", cat: "Finance", icon: "M5,6H19V18H5V6M19,4H5A2,2 0 0,0 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4M11,8H13V10H11V8M11,12H13V14H11V12M11,16H13V17H11V16Z" },
+            { name: "Programmer Calculator", path: "Programmer Calculator/programmer.html", cat: "Basic", icon: "M20,18H4V8H20M20,6H4C2.89,6 2,6.89 2,8V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6M11,14H13V16H11V14M11,10H13V12H11V10M15,14H17V16H15V14M15,10H17V12H15V10M7,14H9V16H7V14M7,10H9V12H7V10Z" },
+            { name: "Scientific Calculator", path: "Scientific calculator/scientific.html", cat: "Basic", icon: "M13,2V8H19V2H13M15,4H17V6H15V4M5,10V16H11V10H5M7,12H9V14H7V12M13,10V22H19V10H13M15,12H17V20H15V12M5,18V22H11V18H5M7,20H9V21H7V20Z" },
+            { name: "Date Calculator", path: "Date Calculator/date.html", cat: "Utility", icon: "M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" },
+            { name: "SWP Calculator", path: "SWP Calculator/swp.html", cat: "Investment", icon: "M16,18L18.29,15.71L13.41,10.83L9.41,14.83L2,7.41L3.41,6L9.41,12L13.41,8L19.71,14.29L22,12V18H16Z" },
+            { name: "Area Calculator", path: "Area Calculator/area.html", cat: "Geometry", icon: "M2,2H11V11H2V2M13,2H22V11H13V2M2,13H11V22H2V13M13,13H22V22H13V13Z" },
+            { name: "Unit Converter", path: "Unit Converter/unit.html", cat: "Utility", icon: "M7,2V5H10V22H14V5H17V2H7M10,7H14V9H10V7M10,11H14V13H10V11M10,15H14V17H10V15Z" },
+            { name: "Volume Calculator", path: "Volume Calculator/volume.html", cat: "Geometry", icon: "M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z" },
+            { name: "Determinant Calculator", path: "Determinant Calculator/Determinant.html", cat: "Utility", icon: "M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19M11,7H13V9H11V7M11,11H13V13H11V11M11,15H13V17H11V15M7,7H9V9H7V7M7,11H9V13H7V11M7,15H9V17H7V15M15,7H17V17H15V7Z" },
+            { name: "BMI Calculator", path: "BMI Calculator/bmi.html", cat: "Health", icon: "M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M11,7H13V13H11V7M11,15H13V17H11V15Z" },
+            { name: "Log Calculator", path: "Log Calculator/log.html", cat: "Utility", icon: "M4 5V17C4 18.1046 4.89543 19 6 19H18 M9 15L12 9L15 15M10 13H14 M16 5h4v4h-4z" }
+        ];
+
+        const sidebarUl = document.getElementById('sidebar-list');
+        const mainGrid = document.getElementById('main-grid');
+
+        calcs.forEach((item, index) => {
+            // Sidebar Bolder Characters[cite: 3]
+            const li = document.createElement('li');
+            if (index === 0) li.className = 'active';
+            li.innerHTML = `<a href="${item.path}">${item.name}</a>`;
+            sidebarUl.appendChild(li);
+
+            // Dashboard Grid Cards (Excluding Home for grid)
+            if (index > 0) {
+                const card = `
+                    <a href="${item.path}" class="calc-card">
+                        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="${item.icon}"/></svg></div>
+                        <h4>${item.name.replace(' Calculator', '')}</h4>
+                        <span class="tag">${item.cat}</span>
+                    </a>
+                `;
+                mainGrid.innerHTML += card;
+            }
+        });
+    </script>
+    <script>
+        // PERFECT MOBILE MENU LOGIC
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('open-menu');
+
+        if (menuBtn && sidebar) {
+            menuBtn.onclick = function(e) {
+                e.stopPropagation(); // Ye menu ko turant band hone se rokega
+                sidebar.classList.toggle('active');
+            };
+
+            document.addEventListener('click', function(e) {
+                // Agar click sidebar ke bahar hua hai aur menu button par nahi hua hai, tabhi band karo
+                if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuBtn) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

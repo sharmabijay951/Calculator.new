@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BMI Calculator Pro | Check Your Healthy Weight & Fitness Status</title>
+    <meta name="description" content="Calculate your Body Mass Index (BMI) instantly. Get healthy weight ranges and fitness categories based on your height and weight.">
+    <meta name="keywords" content="BMI Calculator, Body Mass Index, Healthy Weight Calculator, Fitness Tracker, Weight Category">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Container for side-by-side layout */
+        .bmi-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .bmi-card { flex: 1; min-width: 300px; max-width: 450px; }
+        
+        /* Table Styling */
+        .bmi-table-card { flex: 1; min-width: 300px; max-width: 400px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .bmi-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+        .bmi-table th, .bmi-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .bmi-table th { color: #7c7e8c; font-weight: normal; }
+        
+        /* Row Highlighting based on your screenshot's green theme */
+        .row-underweight { color: #ff9800; }
+        .row-healthy { color: #00d09c; font-weight: bold; background: #e8fcf6; }
+        .row-overweight { color: #ff9800; }
+        .row-obese { color: #f44336; }
+
+        .bmi-res-box { text-align: center; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        .healthy { background: #e8fcf6; color: #00d09c; }
+        .warning { background: #fff4e5; color: #ff9800; }
+        .danger { background: #ffebee; color: #f44336; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li class="active"><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>BMI Calculator</h1>
+            </header>
+
+            <div class="bmi-container">
+                <!-- Main Calculator Card -->
+                <section class="calculator-card bmi-card">
+                    <div class="input-card" style="background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                        <label style="color: #7c7e8c;">Height (cm)</label>
+                        <input type="number" id="height" value="167.64" step="0.01" style="width: 100%; border: none; background: transparent; font-size: 1.5rem; font-weight: bold; outline: none;">
+                    </div>
+
+                    <div class="input-card" style="background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                        <label style="color: #7c7e8c;">Weight (kg)</label>
+                        <input type="number" id="weight" value="52" style="width: 100%; border: none; background: transparent; font-size: 1.5rem; font-weight: bold; outline: none;">
+                    </div>
+
+                    <div id="bmi-result-area" class="bmi-res-box healthy">
+                        <span style="font-size: 0.9rem;">Your BMI</span>
+                        <h2 id="bmi-val" style="font-size: 3rem; margin: 5px 0; color: #00d09c;">18.5</h2>
+                        <span id="bmi-status" style="font-weight: bold; display: block; font-size: 1.2rem;">Healthy / Fit</span>
+                        <p id="ideal-weight" style="font-size: 0.85rem; margin-top: 5px; color: #666;">Ideal weight for your height: 52.0kg - 70.0kg</p>
+                    </div>
+                </section>
+
+                <!-- BMI Reference Table -->
+                <aside class="bmi-table-card">
+                    <h3 style="color: #2d2e32; margin-bottom: 15px;">BMI Categories</h3>
+                    <table class="bmi-table">
+                        <thead>
+                            <tr><th>Category</th><th>BMI Range</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row-underweight"><td>Underweight</td><td>< 18.5</td></tr>
+                            <tr class="row-healthy"><td>Healthy / Fit</td><td>18.5 – 24.9</td></tr>
+                            <tr class="row-overweight"><td>Overweight</td><td>25.0 – 29.9</td></tr>
+                            <tr class="row-obese"><td>Obese</td><td>> 30.0</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.75rem; color: #999; margin-top: 15px;">Note: BMI is a general indicator and may not account for muscle mass (like athletes).</p>
+                </aside>
+            </div>
+        </main>
+    </div>
+    <script src="bmi.js"></script>
+</body>
+</html>

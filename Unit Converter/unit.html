@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Unit Converter Pro | Length, Mass, Data, Temp & Tip Calculator</title>
+    <meta name="description" content="Convert anything instantly. Supports Length, Area, Speed, Data, Temperature, and includes a smart Tip Calculator for bills.">
+    <meta name="keywords" content="Unit Converter, Length Converter, Data Unit Converter, Temperature Calculator, Online Tip Calculator">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Specific tweaks for Unit/Tip UI */
+        .category-select { width: 100%; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 2px solid #00d09c; font-weight: bold; background: white; cursor: pointer; }
+        .unit-card { background: #f8f9fa; padding: 15px; border-radius: 15px; margin-bottom: 10px; }
+        .unit-card select { width: 100%; border: none; background: transparent; font-size: 1rem; color: #7c7e8c; margin-bottom: 5px; outline: none; cursor: pointer; }
+        .unit-card input { width: 100%; border: none; background: transparent; font-size: 1.8rem; font-weight: bold; color: #2d2e32; outline: none; }
+        .tip-label { color: #7c7e8c; font-size: 0.85rem; margin-bottom: 5px; display: block; }
+        .res-highlight { color: #00d09c; font-weight: bold; }
+        input[type="range"] { accent-color: #00d09c; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li class="active"><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>Unit Converter</h1>
+            </header>
+
+            <section class="calculator-card" style="max-width: 500px;">
+                <!-- Main Category -->
+                <select id="category-selector" class="category-select">
+                    <option value="area">Area</option>
+                    <option value="length">Length</option>
+                    <option value="temperature">Temperature</option>
+                    <option value="volume">Volume</option>
+                    <option value="mass">Mass</option>
+                    <option value="data">Data</option>
+                    <option value="speed">Speed</option>
+                    <option value="time">Time</option>
+                    <option value="tip">Tip Calculator</option>
+                </select>
+
+                <!-- Normal Converter Box -->
+                <div id="converter-box">
+                    <div class="unit-card">
+                        <select id="unit-from-select"></select>
+                        <input type="number" id="input-value" value="1">
+                    </div>
+                    <div style="text-align: center; margin: 10px 0; font-size: 1.2rem; color: #00d09c;">⇅</div>
+                    <div class="unit-card" style="background: #e8fcf6;">
+                        <select id="unit-to-select"></select>
+                        <input type="text" id="output-value" readonly style="color: #00d09c;">
+                    </div>
+                </div>
+
+                <!-- Tip Calculator Box -->
+                <div id="tip-section" style="display: none;">
+                    <div class="unit-card">
+                        <span class="tip-label">Subtotal</span>
+                        <input type="number" id="tip-subtotal" value="1">
+                    </div>
+                    <div class="unit-card">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span class="tip-label">Tip (%)</span>
+                            <span id="tip-percent-display" class="res-highlight">15%</span>
+                        </div>
+                        <input type="range" id="tip-percent-slider" min="0" max="100" value="15">
+                    </div>
+                    <div class="unit-card">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span class="tip-label">Split (Persons)</span>
+                            <span id="tip-split-display" style="font-weight: bold;">01</span>
+                        </div>
+                        <input type="range" id="tip-split-slider" min="1" max="100" value="1">
+                    </div>
+                    <div class="result-section" style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
+                        <div class="res-row" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Tip amount</span>
+                            <span id="res-tip-amount">₹0.15</span>
+                        </div>
+                        <div class="res-row" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span>Total</span>
+                            <span id="res-tip-total">₹1.15</span>
+                        </div>
+                        <div class="res-row" style="display: flex; justify-content: space-between; font-size: 1.2rem;">
+                            <span>Each</span>
+                            <span id="res-tip-each" class="res-highlight">₹1.15</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="unit.js"></script>
+</body>
+</html>

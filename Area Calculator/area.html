@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Free Area Calculator | Geometric Shape Area Finder Online</title>
+    <meta name="description" content="Calculate the area of geometric shapes instantly. Supports Square, Rectangle, Circle, Triangle (Heron's Formula), and Polygons. Fast and accurate geometry tool by CalcPro Labs.">
+    <meta name="author" content="Vaibhav Sharma | CalcPro Labs">
+    
+    <link rel="stylesheet" href="../styles.css">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* MAIN FLEX LAYOUT: Calculator sidebar ke bagal mein, text right mein */
+        .content-wrapper { 
+            display: flex; 
+            flex-direction: row; 
+            gap: 30px; 
+            align-items: flex-start; 
+            width: 100%;
+            max-width: 1300px;
+            margin-top: 20px;
+        }
+
+        .calculator-side { flex: 0 0 450px; } /* Calculator card ki width fix ki hai */
+        .text-side { flex: 1; text-align: left; } /* Text baaki bachi jagah lega */
+
+        .shape-input-container { margin-top: 20px; display: none; }
+        .active-shape { display: block; }
+        select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ebedef; font-size: 1rem; margin-bottom: 20px; outline: none; cursor: pointer; }
+        .formula-text { font-size: 0.95rem; color: #00d09c; margin-bottom: 15px; font-weight: 500; background: #e8fcf6; padding: 10px; border-radius: 8px; display: inline-block; }
+        .sidebar-footer { padding: 20px; border-top: 1px solid #f8f9fa; margin-top: auto; font-size: 0.75rem; color: #7c7e8c; }
+        
+        /* SEO Content Styling */
+        .seo-content { color: #444; line-height: 1.6; }
+        .seo-content h2 { color: #2d2e32; margin-bottom: 15px; font-size: 1.5rem; }
+        .formula-box-list { background: #f8f9fa; padding: 15px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #00d09c; }
+
+        @media (max-width: 1100px) {
+            .content-wrapper { flex-direction: column; align-items: center; }
+            .calculator-side { flex: 1; width: 100%; max-width: 500px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text"><h3>CalcPro</h3><p>Smart Suite</p></div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li class="active"><a href="#">Area Calculator</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>© 2026 CalcPro Labs</p>
+                <p>Engineered for Precision</p>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>Area Calculator</h1>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="calculator-side">
+                    <section class="calculator-card" style="max-width: 100%;">
+                        <div class="input-section">
+                            <label>Select Geometric Shape</label>
+                            <select id="shape-selector">
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="circle">Circle</option>
+                                <option value="triangle">Triangle</option>
+                                <option value="polygon">Regular Polygon</option>
+                                <option value="cone">Cone</option>
+                                <option value="ellipse">Ellipse</option>
+                            </select>
+
+                            <div id="inputs-square" class="shape-input-container active-shape">
+                                <div class="formula-text">Formula: \( A = a^2 \)</div>
+                                <div class="input-card"><div class="card-header"><label>Side (a)</label><span class="value-box"><input type="number" id="sq-a" value="10"></span></div></div>
+                            </div>
+
+                            <div id="inputs-rectangle" class="shape-input-container">
+                                <div class="formula-text">Formula: \( A = l \times w \)</div>
+                                <div class="input-card"><div class="card-header"><label>Length (l)</label><span class="value-box"><input type="number" id="rect-a" value="10"></span></div></div>
+                                <div class="input-card"><div class="card-header"><label>Width (w)</label><span class="value-box"><input type="number" id="rect-b" value="5"></span></div></div>
+                            </div>
+
+                            <div id="inputs-circle" class="shape-input-container">
+                                <div class="formula-text">Formula: \( A = \pi r^2 \)</div>
+                                <div class="input-card"><div class="card-header"><label>Radius (r)</label><span class="value-box"><input type="number" id="circ-r" value="7"></span></div></div>
+                            </div>
+
+                            <div id="inputs-triangle" class="shape-input-container">
+                                <select id="tri-method" style="border: 1px solid var(--primary);">
+                                    <option value="1">Base and Height (½ × b × h)</option>
+                                    <option value="2">Heron's Formula (Sides a, b, c)</option>
+                                </select>
+                                <div id="tri-m1">
+                                    <div class="input-card"><div class="card-header"><label>Base (b)</label><span class="value-box"><input type="number" id="tri-b" value="10"></span></div></div>
+                                    <div class="input-card"><div class="card-header"><label>Height (h)</label><span class="value-box"><input type="number" id="tri-h" value="5"></span></div></div>
+                                </div>
+                                <div id="tri-m2" style="display:none;">
+                                    <div class="input-card"><div class="card-header"><label>Side a</label><span class="value-box"><input type="number" id="tri-s1" value="3"></span></div></div>
+                                    <div class="input-card"><div class="card-header"><label>Side b</label><span class="value-box"><input type="number" id="tri-s2" value="4"></span></div></div>
+                                    <div class="input-card"><div class="card-header"><label>Side c</label><span class="value-box"><input type="number" id="tri-s3" value="5"></span></div></div>
+                                </div>
+                            </div>
+
+                            <div id="inputs-polygon" class="shape-input-container">
+                                <div class="formula-text">Formula: \( A = \frac{n \times s^2}{4 \times \tan(\pi/n)} \)</div>
+                                <div class="input-card"><div class="card-header"><label>No. of Sides (n)</label><span class="value-box"><input type="number" id="poly-n" value="5"></span></div></div>
+                                <div class="input-card"><div class="card-header"><label>Side Length (s)</label><span class="value-box"><input type="number" id="poly-s" value="10"></span></div></div>
+                            </div>
+
+                            <div id="inputs-cone" class="shape-input-container">
+                                <div class="formula-text">TSA Formula: \( \pi r(l+r) \)</div>
+                                <div class="input-card"><div class="card-header"><label>Radius (r)</label><span class="value-box"><input type="number" id="cone-r" value="7"></span></div></div>
+                                <div class="input-card"><div class="card-header"><label>Height (h)</label><span class="value-box"><input type="number" id="cone-h" value="10"></span></div></div>
+                            </div>
+
+                            <div id="inputs-ellipse" class="shape-input-container">
+                                <div class="formula-text">Formula: \( \pi \times a \times b \)</div>
+                                <div class="input-card"><div class="card-header"><label>Major Axis (a)</label><span class="value-box"><input type="number" id="elp-a" value="10"></span></div></div>
+                                <div class="input-card"><div class="card-header"><label>Minor Axis (b)</label><span class="value-box"><input type="number" id="elp-b" value="5"></span></div></div>
+                            </div>
+                        </div>
+
+                        <div class="result-section" style="margin-top: 20px;">
+                            <div class="res-row"><span>Calculated Area</span><h2 id="final-area">0</h2></div>
+                            <div id="cone-extra" style="display:none;">
+                                <div class="res-row"><span>Curved Surface Area (CSA)</span><h3 id="res-csa">0</h3></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="text-side">
+                    <article class="seo-content">
+                        <h2>What is the area?</h2>
+                        <p>Area is the measurement of the space contained within the boundaries of a 2D shape. The CalcPro Area tool makes these calculations fast and accurate.</p>
+                        
+                        <h3 style="margin-top: 20px;">Geometric Shapes and their Formulas</h3>
+                        <div class="formula-box-list">
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 12px;"><strong>1. Square:</strong> \( A = a^2 \)</li>
+                                <li style="margin-bottom: 12px;"><strong>2. Rectangle:</strong> \( A = l \times w \)</li>
+                                <li style="margin-bottom: 12px;"><strong>3. Circle:</strong> \( A = \pi r^2 \)</li>
+                                <li style="margin-bottom: 12px;"><strong>4. Triangle:</strong> 
+                                    <br>\( A = \frac{1}{2} \times b \times h \) 
+                                    <br>\( A = \sqrt{s(s-a)(s-b)(s-c)} \)
+                                </li>
+                                <li><strong>5. Regular Polygon:</strong> \( A = \frac{n \times s^2}{4 \times \tan(\pi/n)} \)</li>
+                            </ul>
+                        </div>
+
+                        <h3>CalcPro Area Tool Ki Visheshthayein</h3>
+                        <p>Yeh tool students aur engineers ke liye high-precision constants ka use karta hai taaki decimal points tak sahi result mile. Isme simple shapes ke saath advanced geometric structures bhi shamil hain.</p>
+                        
+                        <p style="margin-top: 25px; font-size: 0.8rem; color: #999;">Designed by <strong>CalcPro Engineering Division</strong> for mathematical precision.</p>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="area.js"></script>
+</body>
+</html>

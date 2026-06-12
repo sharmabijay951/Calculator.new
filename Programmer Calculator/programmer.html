@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Programmer Calculator | Binary, Hex, Dec & Octal Converter</title>
+    <meta name="description" content="Advanced tool for developers. Perform bitwise operations and convert between Binary, Hexadecimal, Octal, and Decimal formats live.">
+    <meta name="keywords" content="Programmer Calculator, Binary Converter, Hex to Dec, Bitwise AND OR XOR, Octal Calculator Online">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Programmer specific grid & mini displays */
+        .prog-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 8px !important; }
+        .prog-grid .btn { height: 60px; font-size: 1.1rem; border-radius: 12px; }
+        .calculator-card { max-width: 550px !important; }
+        .prog-btn { color: #fff; background: #44475b !important; font-size: 0.95rem !important; }
+        
+        .conversion-area { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+        .base-row { display: flex; justify-content: space-between; font-family: monospace; font-size: 1.1rem; margin-bottom: 5px; color: #7c7e8c; }
+        .base-row span.val { color: #2d2e32; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                 <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li class="active"><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>Programmer</h1>
+            </header>
+
+            <section class="calculator-card">
+                <div class="display-container" style="margin-bottom: 10px;">
+                    <input type="text" id="display" placeholder="0" readonly>
+                    <button class="back-btn" onclick="handleInput('⌫')" style="background: #f8f9fa; border: 1px solid #ebedef; border-radius: 8px; padding: 5px 12px; cursor: pointer; color: #00d09c; font-size: 1.2rem;">⌫</button>
+                </div>
+                
+                <div class="conversion-area">
+                    <div class="base-row"><div>HEX</div> <span class="val" id="hex-val">0</span></div>
+                    <div class="base-row"><div>DEC</div> <span class="val" id="dec-val">0</span></div>
+                    <div class="base-row"><div>OCT</div> <span class="val" id="oct-val">0</span></div>
+                    <div class="base-row"><div>BIN</div> <span class="val" id="bin-val">0</span></div>
+                </div>
+
+                <div class="button-grid prog-grid">
+                    <button class="btn prog-btn" onclick="handleInput('<<')">LSH</button>
+                    <button class="btn prog-btn" onclick="handleInput('>>')">RSH</button>
+                    <button class="btn prog-btn" onclick="handleInput('&')">AND</button>
+                    <button class="btn op-red" onclick="handleInput('C')">C</button>
+                    <button class="btn op-green" onclick="handleInput('÷')">÷</button>
+                    
+                    <button class="btn prog-btn" onclick="handleInput('|')">OR</button>
+                    <button class="btn prog-btn" onclick="handleInput('^')">XOR</button>
+                    <button class="btn prog-btn" onclick="handleInput('~')">NOT</button>
+                    <button class="btn op-green" onclick="handleInput('()')">()</button>
+                    <button class="btn op-green" onclick="handleInput('×')">×</button>
+
+                    <button class="btn prog-btn" onclick="handleInput('%')">MOD</button>
+                    <button class="btn num" onclick="handleInput('7')">7</button>
+                    <button class="btn num" onclick="handleInput('8')">8</button>
+                    <button class="btn num" onclick="handleInput('9')">9</button>
+                    <button class="btn op-green" onclick="handleInput('-')">-</button>
+
+                    <button class="btn prog-btn" style="visibility: hidden;">-</button>
+                    <button class="btn num" onclick="handleInput('4')">4</button>
+                    <button class="btn num" onclick="handleInput('5')">5</button>
+                    <button class="btn num" onclick="handleInput('6')">6</button>
+                    <button class="btn op-green" onclick="handleInput('+')">+</button>
+
+                    <button class="btn prog-btn" style="visibility: hidden;">-</button>
+                    <button class="btn num" onclick="handleInput('1')">1</button>
+                    <button class="btn num" onclick="handleInput('2')">2</button>
+                    <button class="btn num" onclick="handleInput('3')">3</button>
+                    <button class="btn equal" onclick="handleInput('=')" style="grid-row: span 2; border-radius: 12px;">=</button>
+
+                    <button class="btn prog-btn" style="visibility: hidden;">-</button>
+                    <button class="btn num" onclick="handleInput('+/-')">+/-</button>
+                    <button class="btn num" onclick="handleInput('0')">0</button>
+                    <button class="btn num" onclick="handleInput('.')">.</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="programmer.js"></script>
+</body>
+</html>

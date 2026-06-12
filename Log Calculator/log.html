@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Log & Antilog Calculator | Calculate log_ab, ln, and Base 10</title>
+    <meta name="description" content="Advanced Logarithm calculator to solve log base 10, natural log (ln), and log with custom base (log_ab). Perfect for students.">
+    <meta name="keywords" content="Log Calculator, Antilog Calculator, Natural Log ln, log base 10 online, log ab formula">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Specific tweaks for perfect alignment[cite: 6] */
+        .log-finder-section { background: #fff; padding: 30px; border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); margin-bottom: 40px; max-width: 550px; width: 100%; }
+        .log-formula { font-size: 1.8rem; font-weight: 600; text-align: center; margin-bottom: 20px; color: var(--text-dark); }
+        .log-formula sub { font-size: 1rem; color: var(--primary); }
+        .input-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .input-row input { width: 180px; padding: 10px; border-radius: 8px; border: 1px solid var(--border); text-align: right; font-weight: 600; outline: none; }
+        .input-row input:focus { border-color: var(--primary); background: #f0fffb; }
+        .result-display { background: var(--hover-bg); padding: 15px; border-radius: 12px; text-align: center; margin-top: 20px; border: 1px dashed var(--primary); }
+        .result-display h2 { color: var(--primary); font-size: 2rem; margin-top: 5px; }
+        .sci-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
+        .sci-btn { background: #2d2e32 !important; color: #fff !important; font-size: 0.9rem !important; }
+
+        /* Backspace UI Fixed[cite: 5] */
+        .display-container { position: relative; margin-bottom: 20px; }
+        #display { width: 100%; padding-right: 45px; border: none; font-size: 2.5rem; text-align: right; outline: none; }
+        .back-btn { position: absolute; right: 10px; bottom: 10px; background: transparent; border: none; cursor: pointer; color: var(--primary); z-index: 10; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header"><div class="logo-box">C</div><div class="logo-text"><h3>CalcPro</h3><p>Smart Suite</p></div></div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li class="active"><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header><h1>Log Calculator Suite</h1></header>
+
+            <!-- Top Custom Log Finder[cite: 6] -->
+            <section class="log-finder-section">
+                <div class="log-formula">log<sub>a</sub> b</div>
+                <div class="input-row"><label>a (base)</label><input type="number" id="base-val" value="10"></div>
+                <div class="input-row"><label>b (number)</label><input type="number" id="num-val" placeholder="Input"></div>
+                <div class="result-display"><span>Result</span><h2 id="log-res-output">0</h2></div>
+            </section>
+
+            <!-- Grid Calculator with Decimal Point Sync[cite: 5, 6] -->
+            <section class="calculator-card" style="max-width: 550px;">
+                <div class="display-container" style="position: relative; margin-bottom: 20px; padding: 20px; background: #fff; border-radius: 18px;">
+                    <input type="text" id="display" placeholder="0" readonly 
+                        style="width: 100%; border: none; font-size: 3rem; text-align: right; outline: none; color: var(--text-dark); font-weight: 500;">
+                    
+                    <!-- Simple Backspace Icon like Scientific -->
+                    <button class="back-btn" onclick="handleInput('⌫')" 
+                            style="position: absolute; right: 25px; bottom: 10px; background: transparent; border: none; cursor: pointer; color: var(--primary);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                            <line x1="18" y1="9" x2="12" y2="15"></line>
+                            <line x1="12" y1="9" x2="18" y2="15"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Perfect 5-Column Grid -->
+                <div class="button-grid sci-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;">
+                    <button class="btn sci-btn" onclick="handleInput('sin(')">sin</button>
+                    <button class="btn sci-btn" onclick="handleInput('cos(')">cos</button>
+                    <button class="btn sci-btn" onclick="handleInput('tan(')">tan</button>
+                    <button class="btn op-red" onclick="handleInput('C')">C</button>
+                    <button class="btn op-green" onclick="handleInput('()')">()</button>
+                    
+                    <button class="btn sci-btn" onclick="handleInput('log(')">log</button>
+                    <button class="btn sci-btn" onclick="handleInput('ln(')">ln</button>
+                    <button class="btn sci-btn" onclick="handleLogAB()">log<sub>a</sub>b</button>
+                    <button class="btn sci-btn" onclick="handleInput('^')">x<sup>y</sup></button>
+                    <button class="btn op-green" onclick="handleInput('÷')">÷</button>
+                    
+                    <button class="btn sci-btn" onclick="handleInput('√(')">√</button>
+                    <button class="btn num" onclick="handleInput('7')">7</button>
+                    <button class="btn num" onclick="handleInput('8')">8</button>
+                    <button class="btn num" onclick="handleInput('9')">9</button>
+                    <button class="btn op-green" onclick="handleInput('×')">×</button>
+                    
+                    <button class="btn sci-btn" onclick="handleInput('π')">π</button>
+                    <button class="btn num" onclick="handleInput('4')">4</button>
+                    <button class="btn num" onclick="handleInput('5')">5</button>
+                    <button class="btn num" onclick="handleInput('6')">6</button>
+                    <button class="btn op-green" onclick="handleInput('-')">-</button>
+
+                    <button class="btn sci-btn" onclick="handleInput('e')">e</button>
+                    <button class="btn num" onclick="handleInput('1')">1</button>
+                    <button class="btn num" onclick="handleInput('2')">2</button>
+                    <button class="btn num" onclick="handleInput('3')">3</button>
+                    <button class="btn op-green" onclick="handleInput('+')">+</button>
+                    
+                    <button class="btn sci-btn" onclick="handleInput('!')">x!</button>
+                    <button class="btn num" onclick="handleInput('plusMinus')">+/-</button>
+                    <button class="btn num" onclick="handleInput('0')">0</button>
+                    <button class="btn num" onclick="handleInput('.')">.</button>
+                    <button class="btn equal" onclick="handleInput('=')" style="grid-row: span 2; border-radius: 15px; background: var(--primary); color: #fff;">=</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="log.js"></script>
+    <script>
+        // PERFECT MOBILE MENU LOGIC
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('open-menu');
+
+        if (menuBtn && sidebar) {
+            menuBtn.onclick = function(e) {
+                e.stopPropagation(); // Ye menu ko turant band hone se rokega
+                sidebar.classList.toggle('active');
+            };
+
+            document.addEventListener('click', function(e) {
+                // Agar click sidebar ke bahar hua hai aur menu button par nahi hua hai, tabhi band karo
+                if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuBtn) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

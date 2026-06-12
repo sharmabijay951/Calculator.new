@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Scientific Calculator | Trigonometry, Log & Factorial</title>
+    <meta name="description" content="Powerful online scientific calculator with support for sin, cos, tan, log, ln, square root, and factorial operations.">
+    <meta name="keywords" content="Scientific Calculator Online, Trigonometry Calculator, Factorial, Math Solve Online">
+    <link rel="canonical" href="https://yourdomain.com/Scientific-calculator/scientific.html">  
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Scientific UI ke liye grid update (5 columns) */
+        .sci-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 8px !important; }
+        .sci-grid .btn { height: 60px; font-size: 1.1rem; border-radius: 12px; }
+        .calculator-card { max-width: 550px !important; }
+        .sci-btn { color: #fff; background: #2d2e32 !important; font-size: 1rem !important; }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li class="active"><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../DeterminantCalculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>Scientific</h1>
+            </header>
+
+            <section class="calculator-card">
+                <div class="display-container">
+                    <input type="text" id="display" placeholder="0" readonly>
+                    <button class="back-btn" onclick="handleInput('⌫')" style="background: #f8f9fa; border: 1px solid #ebedef; border-radius: 8px; padding: 5px 12px; cursor: pointer; color: #00d09c; font-size: 1.2rem;">⌫</button>
+                </div>
+
+                <div class="button-grid sci-grid">
+                    <button class="btn sci-btn" onclick="handleInput('sin(')">sin</button>
+                    <button class="btn sci-btn" onclick="handleInput('cos(')">cos</button>
+                    <button class="btn sci-btn" onclick="handleInput('tan(')">tan</button>
+                    <button class="btn op-red" onclick="handleInput('C')">C</button>
+                    <button class="btn op-green" onclick="handleInput('÷')">÷</button>
+                    
+                    <button class="btn sci-btn" onclick="handleInput('log(')">log</button>
+                    <button class="btn sci-btn" onclick="handleInput('ln(')">ln</button>
+                    <button class="btn sci-btn" onclick="handleInput('^')">x<sup>y</sup></button>
+                    <button class="btn op-green" onclick="handleInput('()')">()</button>
+                    <button class="btn op-green" onclick="handleInput('×')">×</button>
+
+                    <button class="btn sci-btn" onclick="handleInput('√(')">√</button>
+                    <button class="btn num" onclick="handleInput('7')">7</button>
+                    <button class="btn num" onclick="handleInput('8')">8</button>
+                    <button class="btn num" onclick="handleInput('9')">9</button>
+                    <button class="btn op-green" onclick="handleInput('-')">-</button>
+
+                    <button class="btn sci-btn" onclick="handleInput('π')">π</button>
+                    <button class="btn num" onclick="handleInput('4')">4</button>
+                    <button class="btn num" onclick="handleInput('5')">5</button>
+                    <button class="btn num" onclick="handleInput('6')">6</button>
+                    <button class="btn op-green" onclick="handleInput('+')">+</button>
+
+                    <button class="btn sci-btn" onclick="handleInput('e')">e</button>
+                    <button class="btn num" onclick="handleInput('1')">1</button>
+                    <button class="btn num" onclick="handleInput('2')">2</button>
+                    <button class="btn num" onclick="handleInput('3')">3</button>
+                    <button class="btn equal" onclick="handleInput('=')" style="grid-row: span 2; border-radius: 12px;">=</button>
+
+                    <button class="btn sci-btn" onclick="handleInput('!')">x!</button>
+                    <button class="btn num" onclick="handleInput('+/-')">+/-</button>
+                    <button class="btn num" onclick="handleInput('0')">0</button>
+                    <button class="btn num" onclick="handleInput('.')">.</button>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="scientific.js"></script>
+</body>
+</html>

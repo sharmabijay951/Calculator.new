@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SIP Calculator | Calculate Mutual Fund Returns & Compounding Power</title>
+    <meta name="description" content="Estimate your future wealth with our accurate SIP calculator. See the magic of compounding on your monthly mutual fund investments.">
+    <meta name="keywords" content="SIP Calculator Online, Mutual Fund Returns, Systematic Investment Plan, Compounding Magic, Investment Planner">
+    <link rel="stylesheet" href="../styles.css"> </head>
+<body>
+    <div id="app-container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">C</div>
+                <div class="logo-text">
+                    <h3>CalcPro</h3>
+                    <p>Smart Suite</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                
+                <!-- Aapki order list ke hisaab se alignment -->
+                <li><a href="../Standard Calculator/standard.html">Standard</a></li>
+                <li class="active"><a href="../Sip Calculator/sip.html">SIP Calculator</a></li>
+                <li><a href="../Emi Calculator/emi.html">EMI Calculator</a></li>
+                <li><a href="../Lumpsum Calculator/lumpsum.html">Lumpsum Calculator</a></li>
+                <li><a href="../Inflation Calculator/inflation.html">Inflation Calculator</a></li>
+                <li><a href="../Compounding Calculator/compounding.html">Compounding Calculator</a></li>
+                <li><a href="../Simple Interest Calculator/si.html">Simple Interest Calculator</a></li>
+                <li><a href="../Programmer Calculator/programmer.html">Programmer Calculator</a></li>
+                <li><a href="../Scientific calculator/scientific.html">Scientific Calculator</a></li>
+                <li><a href="../Date Calculator/date.html">Date Calculator</a></li>
+                <li><a href="../SWP Calculator/swp.html">SWP Calculator</a></li>
+                <li><a href="../Area Calculator/area.html">Area Calculator</a></li>
+                <li><a href="../Unit Converter/unit.html">Unit Converter</a></li>
+                <li><a href="../Volume Calculator/volume.html">Volume Calculator</a></li>
+                <li><a href="../Determinant Calculator/Determinant.html">Determinant Calculator</a></li>
+                <li><a href="../BMI Calculator/bmi.html">BMI Calculator</a></li>
+                <li><a href="../Log Calculator/log.html">Log Calculator</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content">
+            <header>
+                <button id="open-menu" class="menu-btn">☰</button>
+                <h1>SIP Calculator</h1>
+            </header>
+
+            <section class="calculator-card">
+                <div class="main-layout">
+                    <div class="input-section">
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Monthly investment</label>
+                                <span class="value-box">₹ <input type="number" id="amt-input" value="5000"></span>
+                            </div>
+                            <input type="range" id="amt-slider" min="500" max="100000" step="500" value="5000">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Expected return rate (p.a)</label>
+                                <span class="value-box"><input type="number" id="rate-input" value="12" step="0.1">%</span>
+                            </div>
+                            <input type="range" id="rate-slider" min="1" max="30" step="0.1" value="12">
+                        </div>
+                        <div class="input-card">
+                            <div class="card-header">
+                                <label>Time period</label>
+                                <span class="value-box"><input type="number" id="year-input" value="10">Yr</span>
+                            </div>
+                            <input type="range" id="year-slider" min="1" max="40" value="10">
+                        </div>
+                    </div>
+
+                    <div class="result-section">
+                        <div class="res-row">
+                            <span>Invested amount</span>
+                            <h3 id="res-invested">₹0</h3>
+                        </div>
+                        <div class="res-row">
+                            <span>Est. returns</span>
+                            <h3 id="res-returns" style="color: #00d09c;">₹0</h3>
+                        </div>
+                        <hr>
+                        <div class="res-row total">
+                            <span>Total value</span>
+                            <h2 id="res-total">₹0</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="sip.js"></script>
+    <script>
+        // PERFECT MOBILE MENU LOGIC
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('open-menu');
+
+        if (menuBtn && sidebar) {
+            menuBtn.onclick = function(e) {
+                e.stopPropagation(); // Ye menu ko turant band hone se rokega
+                sidebar.classList.toggle('active');
+            };
+
+            document.addEventListener('click', function(e) {
+                // Agar click sidebar ke bahar hua hai aur menu button par nahi hua hai, tabhi band karo
+                if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuBtn) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
